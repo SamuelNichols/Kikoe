@@ -1,0 +1,16 @@
+#root {
+  margin: 0 auto;
+}
+
+
+
+/* centers items inside side by side with 10px padding and centers all in the middle */
+.top-bar {
+  display: flex;
+  flex-direction: row;            /* items left-to-right */
+  align-items: center;            /* vertically center items within the row */
+  justify-content: center;        /* center the row horizontally */
+  gap: 16px;                      /* reasonable spacing between items */
+  width: 100%;                    /* match container width */
+  margin: 2px auto 0;            /* near the top, centered horizontally */
+}

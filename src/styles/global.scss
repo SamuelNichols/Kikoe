@@ -1,0 +1,32 @@
+/* src/styles/global.scss */
+$light: (
+  bg: #ffffff,
+  text: #1a1a1a,
+  highlight: #ffe58f,
+  button-bg: #4e4b4b,
+);
+
+$dark: (
+  bg: #121212,
+  text: #e5e5e5,
+  highlight: #d4b106,
+  button-bg: #4b4a4b,
+);
+
+/* ✓ mixin emits the declarations */
+@mixin define-vars($map) {
+  @each $k, $v in $map {
+    --#{$k}: #{$v};
+  }
+}
+
+/* Apply tokens */
+:root            { @include define-vars($light); }
+[data-theme=dark]{ @include define-vars($dark); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+}
