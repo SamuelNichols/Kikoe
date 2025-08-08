@@ -5,6 +5,9 @@ A Vite + React + TypeScript app with a lightweight global store (Zustand). Curre
 - YouTube URL/ID input (extracts the 11‑char video id)
 - Clean dev tooling for debugging and performance
 
+### Live Demo
+- Production: https://kikoe.pages.dev/
+
 ### Prerequisites
 - Node 18+ (LTS recommended)
 - npm (bundled with Node)
@@ -30,6 +33,31 @@ npm run preview   # serve the production build locally
 - `dev`: start Vite dev server with HMR
 - `build`: type-check and build for production
 - `preview`: serve the built assets
+
+---
+
+## Cloudflare Pages Deploys
+We keep day‑to‑day work on `main` and deploy the site from a separate branch `live`.
+
+- Cloudflare Pages is configured with:
+  - Production branch: `live`
+  - Build command: `npm run build`
+  - Output directory: `dist`
+
+### Update the live site
+```bash
+# from repo root
+npm run build                 # optional sanity check locally
+
+git switch live
+# fast-forward merge the latest main
+git merge --ff-only main      # or: git rebase main
+# push update to trigger Pages deploy
+git push --force-with-lease origin live
+```
+Cloudflare will detect the push to `live`, build, and redeploy to https://kikoe.pages.dev/ automatically.
+
+Tip: leave “Preview deployments” enabled in Pages to get a unique preview URL for any non-`live` branch/PR.
 
 ---
 
