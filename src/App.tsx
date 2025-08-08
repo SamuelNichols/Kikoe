@@ -3,6 +3,7 @@ import './App.css'
 import { ThemeToggle } from './components/ThemeToggle'
 import { useStore } from './store'
 import { YoutubeURLInput } from './components/YoutubeURLInput'
+import { YouTubePlayer } from './components/YoutubePlayer'
 
 function clearVideoId() {
   useStore.setState({ videoId: null });
@@ -24,7 +25,8 @@ function App() {
         <ThemeToggle />
       </div>
       <YoutubeURLInput />
-      {videoId && <div>Video ID: {videoId}</div>}
+      {/* only show the player if there is a video id */}
+      {videoId && <YouTubePlayer />}
       <button onClick={clearVideoId}>Clear Video ID</button>
     </>
   )
