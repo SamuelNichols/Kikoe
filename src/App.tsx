@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import './App.css'
 import { ThemeToggle } from './components/ThemeToggle'
+import { HelloWorld } from './components/HelloWorld'
 import { useStore } from './store'
 import { YoutubeURLInput } from './components/YoutubeURLInput'
 import { YouTubePlayer } from './components/YoutubePlayer'
@@ -25,6 +26,7 @@ function App() {
         <ThemeToggle />
       </div>
       <YoutubeURLInput />
+      <HelloWorld /> 
       {/* only show the player if there is a video id */}
       {videoId && <YouTubePlayer />}
       <button onClick={clearVideoId}>Clear Video ID</button>
