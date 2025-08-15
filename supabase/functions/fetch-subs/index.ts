@@ -47,7 +47,7 @@ type AvailableCaptionUrls = {
   [key: string]: string;
 }
 
-type Captions = {
+export type RawCaptions = {
   [key: string]: string;
 }
 
@@ -149,18 +149,18 @@ const getPlayer = async (videoId: string, ytcfg: YtCfg): Promise<PlayerResponse>
   return res.json();
 };
 
-const getAllCaptionsByUrl = async (availableCaptionUrls: AvailableCaptionUrls): Promise<Captions> => {
+const getAllCaptionsByUrl = async (availableCaptionUrls: AvailableCaptionUrls): Promise<RawCaptions> => {
   // return as map key -> xml-string
   const captions = await Promise.all(Object.entries(availableCaptionUrls).map(async ([key, url]) => {
     const res = await fetch(url);
     const text = await res.text();
     return { [key]: text };
   }));
-  return captions.reduce((acc, caption) => ({ ...acc, ...caption }), {} as Captions);
+  return captions.reduce((acc, caption) => ({ ...acc, ...caption }), {} as RawCaptions);
 }
 
 // Convenience: one-shot list function you can import/use elsewhere
-export const getAvailableCaptions = async (videoId: string): Promise<Captions> => {
+export const getAvailableCaptions = async (videoId: string): Promise<RawCaptions> => {
   const ytcfg = await getYtcfg(videoId);
   const player = await getPlayer(videoId, ytcfg);
   const captionsList = parseCaptionsList(videoId, player);
