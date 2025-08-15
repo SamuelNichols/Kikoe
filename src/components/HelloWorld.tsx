@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { callHelloWorld } from "../lib/supabaseClient";
+import { callHelloWorld } from "../lib/helloWorld";
 
 export const HelloWorld = () => {
 

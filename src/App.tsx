@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import './App.css'
 import { ThemeToggle } from './components/ThemeToggle'
-import { HelloWorld } from './components/HelloWorld'
 import { useStore } from './store'
 import { YoutubeURLInput } from './components/YoutubeURLInput'
 import { YouTubePlayer } from './components/YoutubePlayer'
+import { getCaptions } from './lib/captions'
 
 function clearVideoId() {
   useStore.setState({ videoId: null });
@@ -19,6 +19,19 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+
+  // testing getCaptions function
+  useEffect(() => {
+    if (videoId) {
+      console.log("Fetching captions for videoId: ", videoId);
+      getCaptions(videoId).then(data => { 
+        console.log("Captions: ", data);
+      }).catch(error => {
+        console.error("Error: ", error);
+      });
+    }
+  }, [videoId]);
+
   return (
     <>
       <div className="top-bar">
@@ -26,7 +39,6 @@ function App() {
         <ThemeToggle />
       </div>
       <YoutubeURLInput />
-      <HelloWorld /> 
       {/* only show the player if there is a video id */}
       {videoId && <YouTubePlayer />}
       <button onClick={clearVideoId}>Clear Video ID</button>
