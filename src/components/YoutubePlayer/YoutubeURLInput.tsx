@@ -1,6 +1,6 @@
 // src/components/UrlInput.tsx
 import { useRef } from 'react';
-import { useVideoStateStore } from '../store/video_state/store';
+import { useVideoStateStore } from '../../store/video_state/store';
 
 // Match common YouTube URL forms and capture the 11-char video id as a named group
 const YT_ID_PATTERN = /(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)(?<id>[A-Za-z0-9_-]{11})/;

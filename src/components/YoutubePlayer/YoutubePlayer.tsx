@@ -1,6 +1,6 @@
 // src/components/YouTubePlayer.tsx
 import { useEffect, useId, useRef } from 'react';
-import { useVideoStateStore } from '../store/video_state/store';
+import { useVideoStateStore } from '../../store/video_state/store';
 
 // declare global window object for youtube iframe api
 export {}; // ensure module
@@ -94,10 +94,16 @@ export function YouTubePlayer() {
 
   // keep 16:9 aspect
   return (
-    <div
-      id={elementId}
-      ref={containerRef}
-      style={{ width: '100%', aspectRatio: '16 / 9', marginTop: '1rem' }}
-    />
+    <>
+      {videoId ? (
+        <div
+          id={elementId}
+          ref={containerRef}
+          style={{ width: '100%', aspectRatio: '16 / 9', marginTop: '1rem' }}
+        />
+      ) : (
+        <div>No video selected</div>
+      )}
+    </>
   );
 }
