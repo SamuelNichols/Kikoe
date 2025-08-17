@@ -1,20 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import './App.css'
 import { ThemeToggle } from './components/ThemeToggle'
-import { useStore } from './store'
+import { useAppConfigStore } from './store/app_config/store'
+import { useVideoStateStore } from './store/video_state/store'
 import { YoutubeURLInput } from './components/YoutubeURLInput'
 import { YouTubePlayer } from './components/YoutubePlayer'
-import { getCaptions, type CaptionsMap } from './lib/captions'
+import { getCaptions } from './lib/captions'
 import CaptionBlock from './components/CaptionBlock'
 
 function clearVideoId() {
-  useStore.setState({ videoId: null });
+  useVideoStateStore.setState({ videoId: null });
 }
 
 function App() {
-  const theme = useStore(s => s.theme);
-  const videoId = useStore(s => s.videoId);
-  const [captions, setCaptions] = useState<CaptionsMap>({});
+  const theme = useAppConfigStore(s => s.theme);
+  const videoId = useVideoStateStore(s => s.videoId);
+  const captions = useVideoStateStore(s => s.captions);
+  const setCaptions = useVideoStateStore(s => s.setCaptions);
 
   // set the theme to the document element
   useEffect(() => {

@@ -1,8 +1,8 @@
-import { useStore } from '../store';
+import { useAppConfigStore } from '../store/app_config/store';
 
 export const ThemeToggle = () => {
-  const theme = useStore(s => s.theme);
-  const toggleTheme = useStore(s => s.toggleTheme);
+  const theme = useAppConfigStore(s => s.theme);
+  const toggleTheme = useAppConfigStore(s => s.toggleTheme);
   
   return (
     <button onClick={toggleTheme} style={{ fontSize: '1.2rem' }}>

@@ -1,6 +1,6 @@
 // src/components/YouTubePlayer.tsx
 import { useEffect, useId, useRef } from 'react';
-import { useStore } from '../store';
+import { useVideoStateStore } from '../store/video_state/store';
 
 // declare global window object for youtube iframe api
 export {}; // ensure module
@@ -17,7 +17,7 @@ declare global {
 }
 
 export function YouTubePlayer() {
-  const videoId = useStore(s => s.videoId);
+  const videoId = useVideoStateStore(s => s.videoId);
   // container for the player
   const containerRef = useRef<HTMLDivElement>(null);
   // player instance

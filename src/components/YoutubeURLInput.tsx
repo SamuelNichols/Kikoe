@@ -1,13 +1,13 @@
 // src/components/UrlInput.tsx
 import { useRef } from 'react';
-import { useStore } from '../store';
+import { useVideoStateStore } from '../store/video_state/store';
 
 // Match common YouTube URL forms and capture the 11-char video id as a named group
 const YT_ID_PATTERN = /(?:youtu\.be\/|v=|\/embed\/|\/shorts\/)(?<id>[A-Za-z0-9_-]{11})/;
 
 export function YoutubeURLInput() {
   const ref = useRef<HTMLInputElement>(null);
-  const setVideoId = useStore(s => s.setVideoId);
+  const setVideoId = useVideoStateStore(s => s.setVideoId);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
